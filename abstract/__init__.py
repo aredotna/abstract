@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, redirect, url_for
 from newspaper import Article
 from xml.etree  import ElementTree
+from BeautifulSoup import BeautifulSoup
 
 app = Flask(__name__)
 
@@ -41,8 +42,15 @@ def show_article():
   except:
     log.error("Couldn't process with NLP")
 
+  try:
+    html = BeautifulSoup(html_string)
+    hrefs = [link['href'] for link in html.findAll('a')]
+  except:
+    log.error("Couldn't get hrefs")
+
   data = {
     'html': html_string,
+    'hrefs': hrefs,
     'authors': str(', '.join(article.authors)),
     'title': article.title,
     'text': article.text,
