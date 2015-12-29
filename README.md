@@ -1,7 +1,5 @@
-### Newspaper Demo
+### Abstract
 
-Demo of the [Newspaper](https://github.com/codelucas/newspaper) article extraction library.
+API fork of the demo of the [Newspaper](https://github.com/codelucas/newspaper) article extraction library.
 
-Visit [http://newspaper-demo.herokuapp.com](http://newspaper-demo.herokuapp.com) for the demo.
-
-Originally authored by [Rob Phillips](https://github.com/iwasrobbed)
+Thanks to [Rob Phillips](https://github.com/iwasrobbed) who originally authored the demo and Newspaper library.
