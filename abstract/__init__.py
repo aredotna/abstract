@@ -20,13 +20,9 @@ except:
 
 @app.route('/')
 def index():
-  return jsonify(status='up')
-
-@app.route('/articles/show')
-def show_article():
   url_to_clean = request.args.get('url')
   if not url_to_clean:
-      return redirect(url_for('index'))
+      return jsonify(status='up')
 
   article = Article(url_to_clean)
   article.download()
