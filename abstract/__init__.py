@@ -7,6 +7,7 @@ app = Flask(__name__)
 # Debug logging
 import logging
 import sys
+
 # Defaults to stdout
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
@@ -25,6 +26,7 @@ def show_article():
   url_to_clean = request.args.get('url')
   if not url_to_clean:
       return redirect(url_for('index'))
+
   article = Article(url_to_clean)
   article.download()
   article.parse()
@@ -49,5 +51,6 @@ def show_article():
     'keywords': str(', '.join(article.keywords)),
     'summary': article.summary
   }
+
   return jsonify(**data)
 
