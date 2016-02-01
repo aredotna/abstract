@@ -2,8 +2,12 @@ from flask import Flask, request, jsonify, redirect, url_for
 from newspaper import Article
 from xml.etree  import ElementTree
 from BeautifulSoup import BeautifulSoup
+from flask.ext.cors import CORS, cross_origin
 
 app = Flask(__name__)
+
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # Debug logging
 import logging
@@ -19,6 +23,7 @@ except:
   log.error(ex.message)
 
 @app.route('/')
+@cross_origin()
 def index():
   url_to_clean = request.args.get('url')
   if not url_to_clean:
