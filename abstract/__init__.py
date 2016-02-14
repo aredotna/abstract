@@ -56,6 +56,7 @@ def index():
     'authors': str(', '.join(article.authors)),
     'title': article.title,
     'text': article.text,
+    'publish_date' : article.publish_date,
     'top_image': article.top_image,
     'videos': str(', '.join(article.movies)),
     'keywords': str(', '.join(article.keywords)),
