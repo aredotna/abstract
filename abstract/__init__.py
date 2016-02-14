@@ -3,6 +3,7 @@ from newspaper import Article
 from xml.etree  import ElementTree
 from BeautifulSoup import BeautifulSoup
 from flask.ext.cors import CORS, cross_origin
+from urlparse import urljoin
 
 app = Flask(__name__)
 
@@ -44,20 +45,27 @@ def index():
     log.error("Couldn't process with NLP")
 
   try:
-    log.info('here!')
     html = BeautifulSoup(html_string)
     links = html.findAll('a')
-    log.info('links: %s', links)
     hrefs = [link.get('href') for link in links if link.get('href')]
+    hrefs = [urljoin(url_to_clean, href) for href in hrefs]
+
   except:
     hrefs = []
     log.error("Couldn't get hrefs")
+
+  try:
+    html = BeautifulSoup(article.html)
+    title = html.title.string
+  except:
+    title = article.title
+    log.error("Couldn't get title")
 
   data = {
     'html': html_string,
     'hrefs': hrefs,
     'authors': str(', '.join(article.authors)),
-    'title': article.title,
+    'title': title,
     'text': article.text,
     'publish_date' : article.publish_date,
     'top_image': article.top_image,
