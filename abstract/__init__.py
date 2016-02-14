@@ -47,6 +47,7 @@ def index():
     html = BeautifulSoup(html_string)
     hrefs = [link['href'] for link in html.findAll('a')]
   except:
+    hrefs = []
     log.error("Couldn't get hrefs")
 
   data = {
