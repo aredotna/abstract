@@ -60,7 +60,8 @@ def index():
     'top_image': article.top_image,
     'videos': str(', '.join(article.movies)),
     'keywords': str(', '.join(article.keywords)),
-    'summary': article.summary
+    'summary': article.summary,
+    'url': url_to_clean
   }
 
   return jsonify(**data)
