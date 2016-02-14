@@ -44,8 +44,11 @@ def index():
     log.error("Couldn't process with NLP")
 
   try:
+    log.info('here!')
     html = BeautifulSoup(html_string)
-    hrefs = [link['href'] for link in html.findAll('a')]
+    links = html.findAll('a')
+    log.info('links: %s', links)
+    hrefs = [link.get('href') for link in links if link.get('href')]
   except:
     hrefs = []
     log.error("Couldn't get hrefs")
