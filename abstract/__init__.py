@@ -53,11 +53,8 @@ def index():
     hrefs = [href for href in hrefs if url_to_clean not in href]
 
     for link in links:
-
       if link.get('href'):
         link['href'] = urljoin(url_to_clean, link['href'])
-        if url_to_clean in link['href']:
-          link.replaceWithChildren()
 
     html_string = str(html)
   except:
