@@ -46,9 +46,17 @@ def index():
 
   try:
     html = BeautifulSoup(html_string)
+
+    for link in html.findAll('a'):
+      if link.get('href'):
+        link[href] = urljoin(url_to_clean, link[href])
+        if url_to_clean in link[href]:
+          link.replaceWithChildren()
+
     links = html.findAll('a')
     hrefs = [link.get('href') for link in links if link.get('href')]
     hrefs = [urljoin(url_to_clean, href) for href in hrefs]
+    hrefs = [href for href in hrefs if url_to_clean not in href]
 
   except:
     hrefs = []
