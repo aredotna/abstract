@@ -1,6 +1,6 @@
 ### Abstract
 
-API for getting extracted representations of webpages.
+API for getting extracted representations of webpages. Currently works in conjuction with [Pilgrim](https://github.com/arenahq/pilgrim.
 
 ----
 
