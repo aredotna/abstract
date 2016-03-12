@@ -62,6 +62,18 @@ def index():
     log.error("Couldn't get hrefs")
 
   try:
+    html = BeautifulSoup(html_string)
+
+    imgs = html.findAll('img')
+    srcs = [img.get('src') for img in imgs if img.get('src')]
+    srcs = [urljoin(url_to_clean, src) for src in srcs]
+
+    html_string = str(html)
+  except:
+    hrefs = []
+    log.error("Couldn't clean images")
+
+  try:
     html = BeautifulSoup(article.html)
     title = html.title.string
   except:
